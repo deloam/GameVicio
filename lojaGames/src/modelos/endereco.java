@@ -10,7 +10,6 @@ package modelos;
  * @author Deloam Kitty
  */
 public class endereco {
-    int i = 0;
     private String logradouro;
     private int numero;
     private String cidade;
