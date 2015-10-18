@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelos;
+package br.com.gameVicio.modelo;
 
 import java.util.Objects;
 import sun.util.calendar.BaseCalendar.Date;
@@ -59,6 +59,11 @@ public class cliente {
         this.dataNasc = dataNasc;
         this.sexo = sexo;
     }
+
+    public cliente() {
+    }
+    
+    
 
     public long getId() {
         return id;

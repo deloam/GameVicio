@@ -1,7 +1,7 @@
 
-package visual;
-import DAO.SQL;
-import controle.conectabd;
+package br.com.gameVicio.visual;
+import br.com.gameVicio.dao.SQL;
+import br.com.gameVicio.controle.conectabd;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

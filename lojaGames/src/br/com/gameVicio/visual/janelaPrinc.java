@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package br.com.gameVicio.visual;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +29,6 @@ public class janelaPrinc extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         areaDeTrabalho = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
@@ -51,7 +50,7 @@ public class janelaPrinc extends javax.swing.JFrame {
         jMenuSobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         areaDeTrabalho.setAutoscrolls(true);
 

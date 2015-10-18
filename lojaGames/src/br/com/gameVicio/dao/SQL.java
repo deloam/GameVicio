@@ -1,5 +1,5 @@
 
-package DAO;
+package br.com.gameVicio.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
