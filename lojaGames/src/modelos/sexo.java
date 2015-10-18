@@ -6,6 +6,7 @@
 package modelos;
 
 public enum sexo {
+    
      M ("Masculino"),
      F ("Feminino");
     
