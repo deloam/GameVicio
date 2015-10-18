@@ -1,48 +1,22 @@
 
 package br.com.gameVicio.visual;
 import br.com.gameVicio.dao.SQL;
-import br.com.gameVicio.controle.conectabd;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class login extends javax.swing.JFrame {
    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    SQL sql = new SQL();
     public login() {
         initComponents();
     }
-     public void Logar(JTextField login,JPasswordField senha) throws ClassNotFoundException{
-        
-    
-       con = conectabd.conectabd();
-        String sql = "Select * from users where nomeUser = ? and senhaUser = ?";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setString(1,login.getText());
-            pst.setString(2, senha.getText());
-            
-            rs = pst.executeQuery();
-            
-            if(rs.next()){
-                janelaPrinc frm = new janelaPrinc();
-                frm.setVisible(true);
-                dispose();
-            }else{
-                JOptionPane.showMessageDialog(null,"Usuario e senha Inválidos");
-            }
-        } catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, error);
-        }
-    }
+  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -162,52 +136,32 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
+        
        try {
-           // TODO add your handling code here:
-           Logar(txtLogin,txtSenha);
+           sql.Logar(txtLogin,txtSenha);
        } catch (ClassNotFoundException ex) {
            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
        }
+       dispose();
     }//GEN-LAST:event_btLogarActionPerformed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){    
-            try {
-               Logar (txtLogin,txtSenha);
+           try {
+               sql.Logar (txtLogin,txtSenha);
            } catch (ClassNotFoundException ex) {
                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
            }
+           dispose();
     }//GEN-LAST:event_txtSenhaKeyPressed
     }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new login().setVisible(true);
             }
