@@ -9,7 +9,7 @@ public class conectabd {
    public static Connection conectabd() throws ClassNotFoundException{
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logins", "root", "deloam");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/game", "root", "deloam");
             JOptionPane.showMessageDialog(null, "conectado com sucesso!");
             return con;
         } catch (SQLException error) {
