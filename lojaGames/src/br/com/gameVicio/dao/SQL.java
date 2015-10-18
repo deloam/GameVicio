@@ -1,6 +1,8 @@
 
 package br.com.gameVicio.dao;
 
+import br.com.gameVicio.controle.conectabd;
+import br.com.gameVicio.visual.janelaPrinc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +16,9 @@ public class SQL {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public void Logar(JTextField login,JPasswordField senha){
-        
-    
+    public void Logar(JTextField login,JPasswordField senha) throws ClassNotFoundException{
+
+       con = conectabd.conectabd();
        
         String sql = "Select * from users where nomeUser = ? and senhaUser = ?";
         try {
@@ -27,12 +29,19 @@ public class SQL {
             rs = pst.executeQuery();
             
             if(rs.next()){
-                JOptionPane.showMessageDialog(null,"ok!");
+                janelaPrinc frm = new janelaPrinc();
+                frm.setVisible(true);        
             }else{
                 JOptionPane.showMessageDialog(null,"Usuario e senha Inválidos");
             }
         } catch (SQLException error) {
             JOptionPane.showMessageDialog(null, error);
         }
+       
     }
+
+
+    public void inserir(){
+
+}
 }
