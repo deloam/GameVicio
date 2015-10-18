@@ -5,6 +5,8 @@
  */
 package modelos;
 
+import java.util.Objects;
+
 /**
  *
  * @author Deloam Kitty
@@ -37,6 +39,38 @@ public class contato {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.email);
+        hash = 23 * hash + Objects.hashCode(this.telefone);
+        hash = 23 * hash + Objects.hashCode(this.celular);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final contato other = (contato) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
     @Override
     public String toString() {
