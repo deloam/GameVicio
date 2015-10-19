@@ -6,7 +6,6 @@
 package br.com.gameVicio.modelo;
 
 import java.util.Objects;
-import sun.util.calendar.BaseCalendar.Date;
 
 
 
@@ -17,7 +16,7 @@ import sun.util.calendar.BaseCalendar.Date;
 public class cliente {
     private long id;
     private String nome;
-    private Date dataNasc;
+    private String dataNasc;
     private String cpf;
     
     private sexo sexo;
@@ -26,7 +25,7 @@ public class cliente {
     
     private contato contato;
 
-    public cliente(long id, String nome, Date dataNasc, String cpf, sexo sexo, endereco endereco, contato contato) {
+    public cliente(long id, String nome, String dataNasc, String cpf, sexo sexo, endereco endereco, contato contato) {
         super();
         this.id = id;
         this.nome = nome;
@@ -37,7 +36,7 @@ public class cliente {
         this.contato = contato;
     }
 
-    public cliente(long id, String nome, Date dataNasc, String cpf, sexo sexo) {
+    public cliente(long id, String nome, String dataNasc, String cpf, sexo sexo) {
         this.id = id;
         this.nome = nome;
         this.dataNasc = dataNasc;
@@ -45,7 +44,7 @@ public class cliente {
         this.sexo = sexo;
     }
 
-    public cliente(String nome, Date dataNasc, String cpf, sexo sexo, endereco endereco, contato contato) {
+    public cliente(String nome, String dataNasc, String cpf, sexo sexo, endereco endereco, contato contato) {
         this.nome = nome;
         this.dataNasc = dataNasc;
         this.cpf = cpf;
@@ -54,7 +53,7 @@ public class cliente {
         this.contato = contato;
     }
 
-    public cliente(String nome, Date dataNasc, sexo sexo) {
+    public cliente(String nome, String dataNasc, sexo sexo) {
         this.nome = nome;
         this.dataNasc = dataNasc;
         this.sexo = sexo;
@@ -73,7 +72,7 @@ public class cliente {
         return nome;
     }
 
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
@@ -101,7 +100,7 @@ public class cliente {
         this.nome = nome;
     }
 
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 

@@ -45,21 +45,23 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        panelDadosPessoais = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        txtDDDCelular = new javax.swing.JTextField();
+        txtDDDTelefone = new javax.swing.JTextField();
+        txtCelular = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
 
         jLabel4.setText("jLabel4");
@@ -82,15 +84,15 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabelEndereci, gridBagConstraints);
 
         jLabel7.setText("CEP:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabel7, gridBagConstraints);
 
         jLabel8.setText("Cidade:");
@@ -98,22 +100,22 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabel8, gridBagConstraints);
 
         jLabel9.setText("Número:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabel9, gridBagConstraints);
 
         jLabel10.setText("UF:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabel10, gridBagConstraints);
 
         jLabel11.setText("Complemento:");
@@ -121,7 +123,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabel11, gridBagConstraints);
 
         jLabel12.setText("Bairro:");
@@ -129,35 +131,37 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 14, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jLabel12, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 280;
-        gridBagConstraints.insets = new java.awt.Insets(10, 3, 10, 9);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField4, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 139;
-        gridBagConstraints.insets = new java.awt.Insets(10, 3, 10, 9);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField5, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField6, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField7, gridBagConstraints);
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -166,12 +170,12 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 50;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField8, gridBagConstraints);
 
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
@@ -180,11 +184,12 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField9, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -192,18 +197,18 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 220;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 3, 10, 9);
+        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 9);
         PanielDadosResidenciais.add(jTextField10, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         getContentPane().add(PanielDadosResidenciais, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados Pessoais", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        panelDadosPessoais.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados Pessoais", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        panelDadosPessoais.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Nome:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -211,7 +216,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        panelDadosPessoais.add(jLabel1, gridBagConstraints);
 
         jLabel2.setText("Data Nascimento:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -219,7 +224,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(16, 0, 10, 15);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        panelDadosPessoais.add(jLabel2, gridBagConstraints);
 
         jLabel5.setText("Sexo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -227,7 +232,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
-        jPanel2.add(jLabel5, gridBagConstraints);
+        panelDadosPessoais.add(jLabel5, gridBagConstraints);
 
         jTextField1.setText("jTextField1");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -236,7 +241,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 407;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel2.add(jTextField1, gridBagConstraints);
+        panelDadosPessoais.add(jTextField1, gridBagConstraints);
 
         jTextField2.setText("jTextField2");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -246,7 +251,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 97;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel2.add(jTextField2, gridBagConstraints);
+        panelDadosPessoais.add(jTextField2, gridBagConstraints);
 
         jTextField3.setText("jTextField3");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -255,12 +260,17 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 77;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel2.add(jTextField3, gridBagConstraints);
+        panelDadosPessoais.add(jTextField3, gridBagConstraints);
+
+        jLabel3.setText("CPF:");
+        panelDadosPessoais.add(jLabel3, new java.awt.GridBagConstraints());
+        panelDadosPessoais.add(jTextField11, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(panelDadosPessoais, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -270,7 +280,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel3.add(jLabel13, gridBagConstraints);
 
         jLabel14.setText("Telefone:");
@@ -278,7 +288,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel3.add(jLabel14, gridBagConstraints);
 
         jLabel15.setText("E-mail:");
@@ -286,53 +296,56 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel3.add(jLabel15, gridBagConstraints);
 
-        jTextField11.setText("jTextField11");
-        jPanel3.add(jTextField11, new java.awt.GridBagConstraints());
+        txtDDDCelular.setColumns(2);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        jPanel3.add(txtDDDCelular, gridBagConstraints);
 
-        jTextField12.setText("jTextField12");
+        txtDDDTelefone.setColumns(2);
+        txtDDDTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDDDTelefoneActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 3, 10, 10);
-        jPanel3.add(jTextField12, gridBagConstraints);
-
-        jTextField13.setText("jTextField13");
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        jPanel3.add(txtDDDTelefone, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 89;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel3.add(jTextField13, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        jPanel3.add(txtCelular, gridBagConstraints);
 
-        jTextField14.setText("jTextField14");
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefoneActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 89;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel3.add(jTextField14, gridBagConstraints);
-
-        jTextField15.setText("jTextField15");
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        jPanel3.add(txtTelefone, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 240;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 3, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel3.add(jTextField15, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         getContentPane().add(jPanel3, gridBagConstraints);
 
         pack();
@@ -346,6 +359,14 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
 
+    private void txtDDDTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDDDTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDDDTelefoneActionPerformed
+
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanielDadosResidenciais;
@@ -357,6 +378,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -364,14 +386,10 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelEndereci;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -381,5 +399,10 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JPanel panelDadosPessoais;
+    private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextField txtDDDCelular;
+    private javax.swing.JTextField txtDDDTelefone;
+    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }
