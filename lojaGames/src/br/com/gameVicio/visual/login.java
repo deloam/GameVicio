@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -139,7 +140,7 @@ public class login extends javax.swing.JFrame {
         
        try {
            sql.Logar(txtLogin,txtSenha);
-       } catch (ClassNotFoundException ex) {
+       } catch (SQLException ex) {
            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
        }
        dispose();
@@ -149,7 +150,7 @@ public class login extends javax.swing.JFrame {
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){    
            try {
                sql.Logar (txtLogin,txtSenha);
-           } catch (ClassNotFoundException ex) {
+           } catch (SQLException ex) {
                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
            }
            dispose();

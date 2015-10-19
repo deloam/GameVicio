@@ -100,6 +100,11 @@ public class janelaPrinc extends javax.swing.JFrame {
         jMenuClientes.setText("Clientes");
 
         jMenuItemCadClientes.setText("cadastrar cliente");
+        jMenuItemCadClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadClientesActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jMenuItemCadClientes);
 
         jMenuItemConCliente.setText("consultar clientes");
@@ -143,6 +148,13 @@ public class janelaPrinc extends javax.swing.JFrame {
         areaDeTrabalho.add(form);
        
     }//GEN-LAST:event_jMenuItemCadastrosActionPerformed
+
+    private void jMenuItemCadClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadClientesActionPerformed
+        cadastroCliente form;
+        form = new cadastroCliente();
+        form.setVisible(true);
+        areaDeTrabalho.add(form);
+    }//GEN-LAST:event_jMenuItemCadClientesActionPerformed
 
     /**
      * @param args the command line arguments
