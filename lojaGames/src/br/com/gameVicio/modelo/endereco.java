@@ -16,7 +16,7 @@ public class endereco {
     private String estado;
     private int cep;
     private String complemento;
-
+//ffjfjfj
     public String getLogradouro() {
         return logradouro;
     }
