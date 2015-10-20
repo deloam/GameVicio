@@ -5,9 +5,6 @@
  */
 package br.com.gameVicio.visual;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Deloam Kitty
@@ -128,6 +125,11 @@ public class janelaPrinc extends javax.swing.JFrame {
         jMenuProdutos.add(jMenuItemCadProduto);
 
         jMenuItemConProduto.setText("consultar produtos");
+        jMenuItemConProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConProdutoActionPerformed(evt);
+            }
+        });
         jMenuProdutos.add(jMenuItemConProduto);
 
         jMenuBar1.add(jMenuProdutos);
@@ -155,6 +157,12 @@ public class janelaPrinc extends javax.swing.JFrame {
         form.setVisible(true);
         areaDeTrabalho.add(form);
     }//GEN-LAST:event_jMenuItemCadClientesActionPerformed
+
+    private void jMenuItemConProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConProdutoActionPerformed
+        consutarProduto form = new consutarProduto();
+        form.setVisible(true);
+        areaDeTrabalho.add(form);
+    }//GEN-LAST:event_jMenuItemConProdutoActionPerformed
 
     /**
      * @param args the command line arguments

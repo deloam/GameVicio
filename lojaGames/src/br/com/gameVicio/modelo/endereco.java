@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.gameVicio.modelo;
 
 /**
@@ -16,7 +12,6 @@ public class endereco {
     private String estado;
     private int cep;
     private String complemento;
-//ffjfjfj
     public String getLogradouro() {
         return logradouro;
     }
