@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class conectabd {
-   public static final ThreadLocal<Connection> conth = new ThreadLocal<Connection>();
+   public static ThreadLocal<Connection> conth = new ThreadLocal<Connection>();
    
    public static Connection getConnection() throws SQLException{
        Connection con = null;

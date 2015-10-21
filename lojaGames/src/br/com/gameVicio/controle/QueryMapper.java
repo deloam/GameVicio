@@ -10,8 +10,9 @@ import java.util.List;
 /**
  *
  * @author Deloam Kitty
+ * @param <T>
  */
-public interface QueryMapper {
+public interface QueryMapper<T> {
     
     List<T> mapping(ResultSet rset) throws SQLException;
 }

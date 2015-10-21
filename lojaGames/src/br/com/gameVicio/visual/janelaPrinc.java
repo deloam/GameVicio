@@ -159,7 +159,8 @@ public class janelaPrinc extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCadClientesActionPerformed
 
     private void jMenuItemConProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConProdutoActionPerformed
-        consutarProduto form = new consutarProduto();
+        consultarProduto form;
+        form = new consultarProduto();
         form.setVisible(true);
         areaDeTrabalho.add(form);
     }//GEN-LAST:event_jMenuItemConProdutoActionPerformed
