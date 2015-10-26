@@ -14,10 +14,14 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     consultarProdutoDao cpd = new consultarProdutoDao();
+    BuildVersion bv = new BuildVersion();
     
     public consultarProduto() throws SQLException {
+        this.setLocation(500, 200);
         initComponents();
         cpd.listarProdutos(tabela);
+        bv.setVersao();
+        lbVersao.setText(bv.getVersao());
     }
 
     @SuppressWarnings("unchecked")
@@ -39,22 +43,31 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        txtPreco = new javax.swing.JTextField();
         cbSetor = new javax.swing.JComboBox();
-        txtChegada = new javax.swing.JTextField();
         cbClassificacao = new javax.swing.JComboBox();
         txtLote = new javax.swing.JTextField();
+        txtPreco = new javax.swing.JFormattedTextField();
+        txtData = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         comboFiltro = new javax.swing.JComboBox();
+        lbVersao = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
         setClosable(true);
         setIconifiable(true);
-        setResizable(true);
+        setTitle("Consulta de Produtos");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/paste_plain.png"))); // NOI18N
+        setOpaque(true);
+        try {
+            setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +87,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 427;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 0);
@@ -93,11 +107,11 @@ public class consultarProduto extends javax.swing.JInternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 23;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 702;
-        gridBagConstraints.ipady = 156;
+        gridBagConstraints.ipady = 144;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -160,6 +174,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel5, gridBagConstraints);
 
         txtCodigo.setEditable(false);
+        txtCodigo.setBackground(new java.awt.Color(204, 204, 204));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -174,15 +189,6 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 198;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtNome, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 76;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel1.add(txtPreco, gridBagConstraints);
 
         cbSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -192,13 +198,6 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(cbSetor, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel1.add(txtChegada, gridBagConstraints);
 
         cbClassificacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,26 +209,50 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(cbClassificacao, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 84;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtLote, gridBagConstraints);
 
+        try {
+            txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ #.###,##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel1.add(txtPreco, gridBagConstraints);
+
+        try {
+            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel1.add(txtData, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 22;
         gridBagConstraints.ipadx = 75;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 6);
+        gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jButton1.setText("Salvar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 155, 6, 0);
         getContentPane().add(jButton1, gridBagConstraints);
@@ -237,7 +260,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         jButton2.setText("Editar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 6, 6, 0);
         getContentPane().add(jButton2, gridBagConstraints);
@@ -245,29 +268,42 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         jButton3.setText("Excluir");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 159, 6, 0);
         getContentPane().add(jButton3, gridBagConstraints);
 
         jLabel9.setText("Pesquisar por:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 0);
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 18, 0, 0);
         getContentPane().add(jLabel9, gridBagConstraints);
 
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Setor", "Lote", "Preço", "Classificação", "Data de Chegada" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 14;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(7, 6, 0, 0);
         getContentPane().add(comboFiltro, gridBagConstraints);
 
-        setSize(new java.awt.Dimension(745, 477));
+        lbVersao.setText("jLabel10");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(31, 40, 6, 0);
+        getContentPane().add(lbVersao, gridBagConstraints);
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -305,12 +341,13 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbVersao;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextField txtChegada;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtLote;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
-    private javax.swing.JTextField txtPreco;
+    private javax.swing.JFormattedTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 }

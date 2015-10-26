@@ -113,9 +113,9 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lbVersao">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Build Verson 1.0.0.0"/>
+            <Property name="text" type="java.lang.String" value="Build Verson 1.0.0.1"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  * @author Deloam Kitty
  */
 public class janelaPrinc extends javax.swing.JFrame {
-
-    /**
-     * Creates new form janelaPrinc
-     */
+    BuildVersion bv = new BuildVersion();
+            
     public janelaPrinc() {
+        bv.setVersao();
         initComponents();
+        lbVersao.setText(bv.getVersao());
     }
 
     /**
@@ -30,7 +30,7 @@ public class janelaPrinc extends javax.swing.JFrame {
     private void initComponents() {
 
         areaDeTrabalho = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        lbVersao = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuItemCadastros = new javax.swing.JMenuItem();
@@ -53,7 +53,7 @@ public class janelaPrinc extends javax.swing.JFrame {
 
         areaDeTrabalho.setAutoscrolls(true);
 
-        jLabel1.setText("Build Verson 1.0.0.0");
+        lbVersao.setText("Build Verson 1.0.0.0");
 
         javax.swing.GroupLayout areaDeTrabalhoLayout = new javax.swing.GroupLayout(areaDeTrabalho);
         areaDeTrabalho.setLayout(areaDeTrabalhoLayout);
@@ -61,17 +61,17 @@ public class janelaPrinc extends javax.swing.JFrame {
             areaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaDeTrabalhoLayout.createSequentialGroup()
                 .addContainerGap(518, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lbVersao)
                 .addContainerGap())
         );
         areaDeTrabalhoLayout.setVerticalGroup(
             areaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaDeTrabalhoLayout.createSequentialGroup()
                 .addContainerGap(344, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lbVersao)
                 .addContainerGap())
         );
-        areaDeTrabalho.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        areaDeTrabalho.setLayer(lbVersao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(areaDeTrabalho);
 
@@ -124,6 +124,11 @@ public class janelaPrinc extends javax.swing.JFrame {
         jMenuProdutos.setText("Produtos");
 
         jMenuItemCadProduto.setText("cadastrar produtos");
+        jMenuItemCadProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadProdutoActionPerformed(evt);
+            }
+        });
         jMenuProdutos.add(jMenuItemCadProduto);
 
         jMenuItemConProduto.setText("consultar produtos");
@@ -171,6 +176,13 @@ public class janelaPrinc extends javax.swing.JFrame {
         areaDeTrabalho.add(form);
     }//GEN-LAST:event_jMenuItemConProdutoActionPerformed
 
+    private void jMenuItemCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadProdutoActionPerformed
+        CadastroProduto form = null;
+        form = new CadastroProduto();
+        form.setVisible(true);
+        areaDeTrabalho.add(form);
+    }//GEN-LAST:event_jMenuItemCadProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,7 +220,6 @@ public class janelaPrinc extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane areaDeTrabalho;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenu jMenuEditar;
@@ -225,5 +236,6 @@ public class janelaPrinc extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenu jMenuProdutos;
     private javax.swing.JMenu jMenuSobre;
+    private javax.swing.JLabel lbVersao;
     // End of variables declaration//GEN-END:variables
 }

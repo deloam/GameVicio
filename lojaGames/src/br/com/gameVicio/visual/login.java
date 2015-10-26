@@ -14,8 +14,12 @@ public class login extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     loginDao sql = new loginDao();
+    BuildVersion bv = new BuildVersion();
+    
     public login() {
+        bv.setVersao();
         initComponents();
+        lbVersao.setText(bv.getVersao());
     }
   
 
@@ -31,7 +35,7 @@ public class login extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         btLogar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lbVersao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GameVicio");
@@ -109,13 +113,13 @@ public class login extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(35, 35, 0, 35);
         jPanel2.add(jPanel1, gridBagConstraints);
 
-        jLabel3.setText("Build Verson 1.0.0.0");
+        lbVersao.setText("Build Verson 1.0.0.1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 250, 43, 0);
-        jPanel2.add(jLabel3, gridBagConstraints);
+        jPanel2.add(lbVersao, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,9 +177,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btLogar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbVersao;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
