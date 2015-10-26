@@ -1,11 +1,11 @@
 
 package br.com.gameVicio.dao;
 
-import br.com.gameVicio.controle.conectabd;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -29,9 +29,32 @@ public class consultarProdutoDao {
         }
     }
     
-    public void pesquisarUsuarios(JTextField pesquisa,JTable tabela) throws SQLException{
+    public void pesquisarUsuarios(JTextField pesquisa,JTable tabela,JComboBox sel) throws SQLException{
+        String seletc;
+        switch (sel.getSelectedIndex()) {
+            case 0:
+                seletc = "nome";
+                break;
+            case 1:
+                seletc = "setor";
+                break;
+            case 2:
+                seletc = "lote";
+                break;
+            case 3:
+                seletc = "preco";
+                break;
+            case 4:
+                seletc = "classificacao";
+                break;
+            case 5:
+                seletc = "dataChegada";
+                break;
+            default:
+                seletc = "nome";
+        }
         con = conectabd.getConnection();
-        String sql = "Select * from produto where upper(nome) LIKE upper(?)";
+        String sql = "Select * from produto where upper("+seletc+") LIKE upper(?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1,pesquisa.getText()+"%");

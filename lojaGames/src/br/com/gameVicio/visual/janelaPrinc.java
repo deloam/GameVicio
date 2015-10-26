@@ -3,6 +3,10 @@
  */
 package br.com.gameVicio.visual;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Deloam Kitty
@@ -157,8 +161,12 @@ public class janelaPrinc extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCadClientesActionPerformed
 
     private void jMenuItemConProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConProdutoActionPerformed
-        consultarProduto form;
-        form = new consultarProduto();
+        consultarProduto form = null;
+        try {
+            form = new consultarProduto();
+        } catch (SQLException ex) {
+            Logger.getLogger(janelaPrinc.class.getName()).log(Level.SEVERE, null, ex);
+        }
         form.setVisible(true);
         areaDeTrabalho.add(form);
     }//GEN-LAST:event_jMenuItemConProdutoActionPerformed

@@ -1,5 +1,5 @@
 
-package br.com.gameVicio.controle;
+package br.com.gameVicio.dao;
 import java.awt.List;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -127,26 +127,6 @@ public class conectabd {
 		executePreparedUpdate(getConnectionFromConth(), query, params);
 	}
 
-	public <T> List<T> executePreparedQuery ( String query, QueryMapper<T> mapper ) throws SQLException {
-		
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		List<T> list = new ArrayList<T>();
-		
-		try {
-			con =	getConnection();
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
-			list = mapper.mapping(rset);
-		} finally {
-			fecharTudo(con, stmt, rset);
-		}
-		
-		return list;
-		
-	}
 
 	public void fecharStmt(Statement stmt) {
 		if (stmt == null) return;

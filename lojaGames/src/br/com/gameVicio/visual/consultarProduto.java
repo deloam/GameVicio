@@ -48,12 +48,12 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        comboFiltro = new javax.swing.JComboBox();
 
         jLabel6.setText("jLabel6");
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -73,10 +73,10 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 427;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 73, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 0);
         getContentPane().add(txtPesquisa, gridBagConstraints);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -94,14 +94,14 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 759;
-        gridBagConstraints.ipady = 175;
+        gridBagConstraints.ipadx = 702;
+        gridBagConstraints.ipady = 156;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 6);
+        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 6);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Edição"), "", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
@@ -221,7 +221,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.ipadx = 132;
+        gridBagConstraints.ipadx = 75;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 6);
         getContentPane().add(jPanel1, gridBagConstraints);
@@ -231,7 +231,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 213, 15, 0);
+        gridBagConstraints.insets = new java.awt.Insets(19, 155, 6, 0);
         getContentPane().add(jButton1, gridBagConstraints);
 
         jButton2.setText("Editar");
@@ -239,7 +239,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 42, 15, 0);
+        gridBagConstraints.insets = new java.awt.Insets(19, 6, 6, 0);
         getContentPane().add(jButton2, gridBagConstraints);
 
         jButton3.setText("Excluir");
@@ -247,18 +247,27 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 53, 15, 0);
+        gridBagConstraints.insets = new java.awt.Insets(19, 159, 6, 0);
         getContentPane().add(jButton3, gridBagConstraints);
 
-        jLabel9.setText("Pesquisar");
+        jLabel9.setText("Pesquisar por:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 0);
         getContentPane().add(jLabel9, gridBagConstraints);
 
-        pack();
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Setor", "Lote", "Preço", "Classificação", "Data de Chegada" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 6, 0, 0);
+        getContentPane().add(comboFiltro, gridBagConstraints);
+
+        setSize(new java.awt.Dimension(745, 477));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -271,7 +280,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         try {
-            cpd.pesquisarUsuarios(txtPesquisa, tabela);
+            cpd.pesquisarUsuarios(txtPesquisa, tabela, comboFiltro);
         } catch (SQLException ex) {
             Logger.getLogger(consultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -281,6 +290,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbClassificacao;
     private javax.swing.JComboBox cbSetor;
+    private javax.swing.JComboBox comboFiltro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

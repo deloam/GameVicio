@@ -5,7 +5,12 @@
  */
 package br.com.gameVicio.visual;
 
+import br.com.gameVicio.dao.clienteDao;
+import br.com.gameVicio.modelo.cliente;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +18,8 @@ import javax.swing.JOptionPane;
  * @author Deloam Kitty
  */
 public class cadastroCliente extends javax.swing.JInternalFrame {
-
+    clienteDao cd = new clienteDao();
+    cliente cc = new cliente();
     /**
      * Creates new form cadastroCliente
      */
@@ -200,7 +206,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 77;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 78);
+        gridBagConstraints.insets = new java.awt.Insets(5, 4, 5, 59);
         painelDadosResidenciais.add(txtCep, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -234,7 +240,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         painelDadosResidenciais.add(cbUF, gridBagConstraints);
 
-        btBuscarCep.setText("buscar");
+        btBuscarCep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/magnifier.png"))); // NOI18N
         btBuscarCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarCepActionPerformed(evt);
@@ -244,7 +250,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 11, 0, 4);
+        gridBagConstraints.insets = new java.awt.Insets(0, 55, 0, 0);
         painelDadosResidenciais.add(btBuscarCep, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -429,17 +435,24 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 17, 0);
         getContentPane().add(painelContatos, gridBagConstraints);
 
+        btSalvarCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
         btSalvarCadastro.setText("salvar");
+        btSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarCadastroActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         getContentPane().add(btSalvarCadastro, gridBagConstraints);
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
         btFechar.setText("fechar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(0, 176, 0, 13);
+        gridBagConstraints.insets = new java.awt.Insets(0, 207, 0, 0);
         getContentPane().add(btFechar, gridBagConstraints);
 
         pack();
@@ -498,6 +511,16 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     private void btBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCepActionPerformed
         buscaCep();
     }//GEN-LAST:event_btBuscarCepActionPerformed
+
+    private void btSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCadastroActionPerformed
+        cc.setNome(txtNome.getText());
+        cc.setDataNasc(txtNasc.getText());
+        try {
+            cd.inserirCliente(cc);
+        } catch (SQLException ex) {
+            Logger.getLogger(cadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btSalvarCadastroActionPerformed
       
     public void buscaCep() {
         //Faz a busca para o cep 58043-280
