@@ -83,6 +83,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Cadastros");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/user.png"))); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         lbCadastroCliente.setText("Cadastro de Cliente:");
@@ -421,9 +422,10 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 0, 0);
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.insets = new java.awt.Insets(4, 57, 0, 0);
         painelContatos.add(btLimparDadosContato, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

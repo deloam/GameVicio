@@ -28,7 +28,6 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Cadastro De Produtos"/>
   </Properties>
@@ -270,16 +269,25 @@
     </Component>
     <Component class="javax.swing.JButton" name="btSalvar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ICONES/accept.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="salvar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btLimpar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ICONES/page_white_horizontal.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="limpar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btFechar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ICONES/cancel.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="fechar"/>
       </Properties>
     </Component>

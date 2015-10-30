@@ -59,7 +59,6 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Cadastro De Produtos");
 
@@ -197,10 +196,13 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
         lbTitulo.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         lbTitulo.setText("Cadastramento de Novo Produtos");
 
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
         btSalvar.setText("salvar");
 
+        btLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/page_white_horizontal.png"))); // NOI18N
         btLimpar.setText("limpar");
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
         btFechar.setText("fechar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

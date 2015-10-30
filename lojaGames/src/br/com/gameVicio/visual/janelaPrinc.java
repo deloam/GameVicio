@@ -3,9 +3,12 @@
  */
 package br.com.gameVicio.visual;
 
+import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,6 +18,7 @@ public class janelaPrinc extends javax.swing.JFrame {
     BuildVersion bv = new BuildVersion();
             
     public janelaPrinc() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         bv.setVersao();
         initComponents();
         lbVersao.setText(bv.getVersao());
@@ -67,7 +71,7 @@ public class janelaPrinc extends javax.swing.JFrame {
         areaDeTrabalhoLayout.setVerticalGroup(
             areaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaDeTrabalhoLayout.createSequentialGroup()
-                .addContainerGap(344, Short.MAX_VALUE)
+                .addContainerGap(353, Short.MAX_VALUE)
                 .addComponent(lbVersao)
                 .addContainerGap())
         );
@@ -142,6 +146,11 @@ public class janelaPrinc extends javax.swing.JFrame {
         jMenuBar1.add(jMenuProdutos);
 
         jMenuSobre.setText("sobre");
+        jMenuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSobreActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuSobre);
 
         setJMenuBar(jMenuBar1);
@@ -182,6 +191,10 @@ public class janelaPrinc extends javax.swing.JFrame {
         form.setVisible(true);
         areaDeTrabalho.add(form);
     }//GEN-LAST:event_jMenuItemCadProdutoActionPerformed
+
+    private void jMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSobreActionPerformed
+
+    }//GEN-LAST:event_jMenuSobreActionPerformed
 
     /**
      * @param args the command line arguments

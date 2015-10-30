@@ -249,6 +249,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(jPanel1, gridBagConstraints);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
         jButton1.setText("Salvar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -257,6 +258,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(19, 155, 6, 0);
         getContentPane().add(jButton1, gridBagConstraints);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/pencil.png"))); // NOI18N
         jButton2.setText("Editar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -265,6 +267,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(19, 6, 6, 0);
         getContentPane().add(jButton2, gridBagConstraints);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
         jButton3.setText("Excluir");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -303,7 +306,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(31, 40, 6, 0);
         getContentPane().add(lbVersao, gridBagConstraints);
 
-        pack();
+        setSize(new java.awt.Dimension(745, 477));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
