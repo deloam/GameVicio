@@ -134,6 +134,7 @@
     <Container class="javax.swing.JDesktopPane" name="areaDeTrabalho">
       <Properties>
         <Property name="autoscrolls" type="boolean" value="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>

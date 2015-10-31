@@ -1,10 +1,5 @@
-
 package br.com.gameVicio.modelo;
 
-/**
- *
- * @author Deloam Kitty
- */
 public class endereco {
     private String logradouro;
     private int numero;
@@ -12,6 +7,7 @@ public class endereco {
     private String estado;
     private int cep;
     private String complemento;
+    
     public String getLogradouro() {
         return logradouro;
     }

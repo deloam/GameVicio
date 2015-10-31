@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gameVicio.modelo;
 
 import java.util.Objects;
 
-/**
- *
- * @author Deloam Kitty
- */
 public class contato {
     private String email;
     private String telefone;
@@ -70,8 +61,6 @@ public class contato {
         return true;
     }
     
-    
-
     @Override
     public String toString() {
        StringBuilder builder = new StringBuilder();
@@ -85,6 +74,4 @@ public class contato {
        return builder.toString();
     }
 
-    
-    
 }

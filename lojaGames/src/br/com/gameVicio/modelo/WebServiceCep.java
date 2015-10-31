@@ -1,4 +1,4 @@
-package br.com.gameVicio.visual;
+package br.com.gameVicio.modelo;
 
 import java.net.MalformedURLException;
 import java.net.URL;

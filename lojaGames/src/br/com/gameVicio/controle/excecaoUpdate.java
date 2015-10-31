@@ -1,4 +1,3 @@
-
 package br.com.gameVicio.controle;
 
 public class excecaoUpdate extends RuntimeException {
