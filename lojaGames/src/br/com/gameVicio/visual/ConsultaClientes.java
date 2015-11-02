@@ -1,13 +1,27 @@
 package br.com.gameVicio.visual;
 
+import br.com.gameVicio.dao.ClienteDao;
 import br.com.gameVicio.modelo.WebServiceCep;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ConsultaClientes extends javax.swing.JInternalFrame {
 
-    public ConsultaClientes() {
+     Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    ClienteDao cpd = new ClienteDao();
+    BuildVersion bv = new BuildVersion();
+    public ConsultaClientes() throws SQLException {
         initComponents();
+        cpd.listarClientes(tabela);
+        bv.setVersao();
     }
 
     @SuppressWarnings("unchecked")
@@ -15,8 +29,8 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jTextField1 = new javax.swing.JTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        txtPesquisar = new javax.swing.JTextField();
+        tablePainel = new javax.swing.JTabbedPane();
         painelDadosPessoais = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
         lbDataNasc = new javax.swing.JLabel();
@@ -25,7 +39,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         txtNasc = new javax.swing.JTextField();
         lbCPF = new javax.swing.JLabel();
         txtcpf = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboSexo = new javax.swing.JComboBox();
         painelDadosResidenciais = new javax.swing.JPanel();
         lbEndereco = new javax.swing.JLabel();
         lbCep = new javax.swing.JLabel();
@@ -52,18 +66,24 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         txtTelefone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        comboFiltro = new javax.swing.JComboBox();
+        btSalvar = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
 
-        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 0));
-        jTabbedPane1.setToolTipText("");
+        txtPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarKeyReleased(evt);
+            }
+        });
+
+        tablePainel.setBackground(new java.awt.Color(255, 255, 0));
+        tablePainel.setToolTipText("");
 
         painelDadosPessoais.setBackground(new java.awt.Color(192, 212, 251));
         painelDadosPessoais.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 255)));
@@ -122,7 +142,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 7, 5, 0);
         painelDadosPessoais.add(txtcpf, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -130,9 +150,9 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        painelDadosPessoais.add(jComboBox1, gridBagConstraints);
+        painelDadosPessoais.add(comboSexo, gridBagConstraints);
 
-        jTabbedPane1.addTab("Dados Pessoais", painelDadosPessoais);
+        tablePainel.addTab("Dados Pessoais", painelDadosPessoais);
 
         painelDadosResidenciais.setBackground(new java.awt.Color(251, 209, 209));
         painelDadosResidenciais.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
@@ -283,7 +303,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         painelDadosResidenciais.add(btBuscarCep, gridBagConstraints);
 
-        jTabbedPane1.addTab("Dados Residenciais", painelDadosResidenciais);
+        tablePainel.addTab("Dados Residenciais", painelDadosResidenciais);
 
         painelContatos.setBackground(new java.awt.Color(187, 248, 182));
         painelContatos.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 204, 0)));
@@ -355,80 +375,82 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelContatos.add(txtEmail, gridBagConstraints);
 
-        jTabbedPane1.addTab("Contato", painelContatos);
+        tablePainel.addTab("Contato", painelContatos);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Título 5", "Título 6", "Título 7"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Título 5"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabela);
 
         jLabel1.setText("Pesquisar por:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Nascimento", "CPF", "Sexo" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Nascimento", "CPF", "Sexo" }));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
-        jButton1.setText("Salvar");
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
+        btSalvar.setText("Salvar");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/pencil.png"))); // NOI18N
-        jButton2.setText("Editar");
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/pencil.png"))); // NOI18N
+        btEditar.setText("Editar");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
-        jButton3.setText("Excluir");
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
+        btExcluir.setText("Excluir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btSalvar)
+                        .addGap(6, 6, 6)
+                        .addComponent(btEditar)
+                        .addGap(159, 159, 159)
+                        .addComponent(btExcluir)
+                        .addGap(134, 134, 134))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tablePainel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(txtPesquisar)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, 0, 117, Short.MAX_VALUE)))
+                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton2)
-                        .addGap(159, 159, 159)
-                        .addComponent(jButton3)
-                        .addGap(134, 134, 134))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tablePainel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btSalvar)
+                    .addComponent(btEditar)
+                    .addComponent(btExcluir))
                 .addGap(10, 10, 10))
         );
 
@@ -466,6 +488,14 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneActionPerformed
 
+    private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
+        try {
+            cpd.pesquisarFiltro(txtPesquisar, tabela, comboFiltro);
+        } catch (SQLException ex) {
+            Logger.getLogger(consultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtPesquisarKeyReleased
+
     public void buscaCep() {
         //Faz a busca para o cep 58043-280
         WebServiceCep webServiceCep = WebServiceCep.searchCep(txtCep.getText());
@@ -493,17 +523,14 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscarCep;
+    private javax.swing.JButton btEditar;
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbUF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox comboFiltro;
+    private javax.swing.JComboBox comboSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbCelular;
@@ -521,6 +548,8 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel painelContatos;
     private javax.swing.JPanel painelDadosPessoais;
     private javax.swing.JPanel painelDadosResidenciais;
+    private javax.swing.JTable tabela;
+    private javax.swing.JTabbedPane tablePainel;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtCep;
@@ -533,6 +562,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNasc;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumEnd;
+    private javax.swing.JTextField txtPesquisar;
     private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtcpf;
     // End of variables declaration//GEN-END:variables
