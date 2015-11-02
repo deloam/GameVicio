@@ -1,6 +1,6 @@
 
 package br.com.gameVicio.visual;
-import br.com.gameVicio.dao.LoginDao;
+import br.com.gameVicio.dao.loginDao;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ public class login extends javax.swing.JFrame {
    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    LoginDao sql = new LoginDao();
+    loginDao sql = new loginDao();
     BuildVersion bv = new BuildVersion();
     
     public login() {

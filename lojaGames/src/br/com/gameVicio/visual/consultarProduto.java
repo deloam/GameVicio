@@ -1,6 +1,6 @@
 package br.com.gameVicio.visual;
 
-import br.com.gameVicio.dao.ProdutoDao;
+import br.com.gameVicio.dao.consultarProdutoDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    ProdutoDao cpd = new ProdutoDao();
+    consultarProdutoDao cpd = new consultarProdutoDao();
     BuildVersion bv = new BuildVersion();
     
     public consultarProduto() throws SQLException {
@@ -318,7 +318,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         try {
-            cpd.pesquisarFiltro(txtPesquisa, tabela, comboFiltro);
+            cpd.pesquisarUsuarios(txtPesquisa, tabela, comboFiltro);
         } catch (SQLException ex) {
             Logger.getLogger(consultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,7 +1,7 @@
 package br.com.gameVicio.visual;
 
 import br.com.gameVicio.modelo.WebServiceCep;
-import br.com.gameVicio.dao.ClienteDao;
+import br.com.gameVicio.dao.clienteDao;
 import br.com.gameVicio.modelo.cliente;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class cadastroCliente extends javax.swing.JInternalFrame {
-    ClienteDao cd = new ClienteDao();
+    clienteDao cd = new clienteDao();
     cliente cc = new cliente();
 
     public cadastroCliente() {
@@ -65,6 +65,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Cadastros");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/user.png"))); // NOI18N
@@ -499,7 +500,13 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarCepActionPerformed
 
     private void btSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCadastroActionPerformed
-        
+        cc.setNome(txtNome.getText());
+        cc.setDataNasc(txtNasc.getText());
+        try {
+            cd.inserirCliente(cc);
+        } catch (SQLException ex) {
+            Logger.getLogger(cadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btSalvarCadastroActionPerformed
       
     public void buscaCep() {

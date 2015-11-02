@@ -10,14 +10,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
 
-public class ProdutoDao {
+public class consultarProdutoDao {
      Connection con;
     PreparedStatement pst;
     ResultSet rs;
     
    
      public void listarProdutos(JTable tabela) throws SQLException{
-         con = Conectabd.getConnection();
+         con = conectabd.getConnection();
         String sql = "select * from produto order by id Asc";
         try {
             pst = con.prepareStatement(sql);
@@ -28,7 +28,7 @@ public class ProdutoDao {
         }
     }
     
-    public void pesquisarFiltro(JTextField pesquisa,JTable tabela,JComboBox sel) throws SQLException{
+    public void pesquisarUsuarios(JTextField pesquisa,JTable tabela,JComboBox sel) throws SQLException{
         String seletc;
         switch (sel.getSelectedIndex()) {
             case 0:
@@ -52,7 +52,7 @@ public class ProdutoDao {
             default:
                 seletc = "nome";
         }
-        con = Conectabd.getConnection();
+        con = conectabd.getConnection();
         String sql = "Select * from produto where upper("+seletc+") LIKE upper(?)";
         try {
             pst = con.prepareStatement(sql);
