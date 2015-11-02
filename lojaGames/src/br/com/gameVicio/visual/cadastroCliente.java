@@ -1,7 +1,9 @@
 package br.com.gameVicio.visual;
 
 import br.com.gameVicio.modelo.WebServiceCep;
-import br.com.gameVicio.dao.clienteDao;
+import br.com.gameVicio.dao.ClienteDao;
+import br.com.gameVicio.dao.ContatoDao;
+import br.com.gameVicio.dao.EnderecoDao;
 import br.com.gameVicio.modelo.cliente;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -10,9 +12,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class cadastroCliente extends javax.swing.JInternalFrame {
-    clienteDao cd = new clienteDao();
+    ClienteDao cd = new ClienteDao();
     cliente cc = new cliente();
-
+    EnderecoDao end = new EnderecoDao();
+    ContatoDao cont = new ContatoDao();
+    
     public cadastroCliente() {
         initComponents();
     }
@@ -49,7 +53,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         lbCPF = new javax.swing.JLabel();
         txtcpf = new javax.swing.JTextField();
         btLimparDadosPessoais = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbSexo = new javax.swing.JComboBox();
         painelContatos = new javax.swing.JPanel();
         lbCelular = new javax.swing.JLabel();
         lbTelefone = new javax.swing.JLabel();
@@ -316,12 +320,12 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         painelDadosPessoais.add(btLimparDadosPessoais, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecione...", "Masculino", "Feminino" }));
+        cbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecione...", "Masculino", "Feminino" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        painelDadosPessoais.add(jComboBox1, gridBagConstraints);
+        painelDadosPessoais.add(cbSexo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -500,10 +504,10 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarCepActionPerformed
 
     private void btSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCadastroActionPerformed
-        cc.setNome(txtNome.getText());
-        cc.setDataNasc(txtNasc.getText());
+       end.cadastrarEndereco(txtEndereco, txtCep, txtCidade, cbUF, txtCep, txtComplemento);
+       cont.cadastrarContato(txtTelefone, txtEmail, txtCelular, txtDDDCelular, txtDDDTelefone);
         try {
-            cd.inserirCliente(cc);
+            cd.inserirCliente(txtNome, txtNasc, txtcpf, cbSexo, 1, 1);
         } catch (SQLException ex) {
             Logger.getLogger(cadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -543,8 +547,8 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btLimparDadosPessoais;
     private javax.swing.JButton btLimparDadosRecidenciais;
     private javax.swing.JButton btSalvarCadastro;
+    private javax.swing.JComboBox cbSexo;
     private javax.swing.JComboBox cbUF;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbCadastroCliente;
