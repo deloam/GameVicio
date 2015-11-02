@@ -61,19 +61,26 @@ public class ClienteDao {
         }
     }
 
-       public void inserirCliente(cliente cliente) throws SQLException{
+       public void inserirCliente(JTextField nome, JTextField nasc
+         ,JTextField cpf, JComboBox sexo,int end, int contato) throws SQLException{
         con = conectabd.getConnection();
         int i = 0;
+        String sx = null;
         String sql = "insert into clientes (nome, dataNasc, cpf, sexo, endereco, contato)"
                 + " values (?,?,?,?,?,?)";
+        if (sexo.getSelectedIndex() == 2){
+            sx = "m";
+        }else if (sexo.getSelectedIndex() == 3){
+            sx = "f";
+        }
          try {
              pst = con.prepareStatement(sql);
-             pst.setString(++i, cliente.getNome() );
-             pst.setString(++i, cliente.getDataNasc());
-             pst.setString(++i, cliente.getCpf());
-             pst.setString(++i, cliente.getSexo().toString());
-             pst.setString(++i, cliente.getEndereco().toString());
-             pst.setString(++i, cliente.getContato().toString());
+             pst.setString(++i, nome.getText() );
+             pst.setString(++i, nasc.getText() );
+             pst.setString(++i, cpf.getText() );
+             pst.setString(++i, sx );
+             pst.setInt(i++,end);
+             pst.setInt(i++,contato);
              pst.executeUpdate();
              con.close();
              pst.close();
