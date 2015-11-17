@@ -1,6 +1,8 @@
 package br.com.gameVicio.dao;
 
 import br.com.gameVicio.modelo.cliente;
+import br.com.gameVicio.modelo.contato;
+import br.com.gameVicio.modelo.endereco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,26 +63,32 @@ public class ClienteDao {
         }
     }
 
-       public void inserirCliente(JTextField nome, JTextField nasc
-         ,JTextField cpf, JComboBox sexo,int end, int contato) throws SQLException{
+       public void inserirCliente(cliente cc,endereco end,contato conc) throws SQLException{
         con = conectabd.getConnection();
         int i = 0;
         String sx = null;
-        String sql = "insert into clientes (nome, dataNasc, cpf, sexo, endereco, contato)"
-                + " values (?,?,?,?,?,?)";
-        if (sexo.getSelectedIndex() == 2){
-            sx = "m";
-        }else if (sexo.getSelectedIndex() == 3){
-            sx = "f";
-        }
+        String sql = "INSERT INTO `game`.`clientes` (`nome`, `dataNasc`, `cpf`, `sexo`, "
+             + "`logradouro`, `numero_casa`, `cidade`, `estado`, `cep`, `complemento`, "
+             + "`email`, `telefone`, `dddtel`, `celular`, `dddcel`) "
+             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
          try {
              pst = con.prepareStatement(sql);
-             pst.setString(++i, nome.getText() );
-             pst.setString(++i, nasc.getText() );
-             pst.setString(++i, cpf.getText() );
-             pst.setString(++i, sx );
-             pst.setInt(i++,end);
-             pst.setInt(i++,contato);
+             pst.setString(++i, cc.getNome());
+             pst.setString(++i, cc.getDataNasc());
+             pst.setString(++i, cc.getCpf() );
+             pst.setString(++i, cc.getSexo().toString() );
+             pst.setString(++i, end.getLogradouro());
+             pst.setInt   (++i, end.getNumero() );
+             pst.setString(++i, end.getCidade());
+             pst.setString(++i, end.getEstado());
+             pst.setInt   (++i, end.getCep());
+             pst.setString(++i, end.getComplemento());
+             pst.setString(++i, conc.getEmail());
+             pst.setString(++i, conc.getTelefone());
+             pst.setString(i++,conc.getTelefone().substring(0, 1));
+             pst.setString(++i, conc.getCelular());
+             pst.setString(i++,conc.getCelular().substring(0, 1));
              pst.executeUpdate();
              con.close();
              pst.close();
