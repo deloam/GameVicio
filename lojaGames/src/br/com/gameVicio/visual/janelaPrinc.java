@@ -22,21 +22,12 @@ public class janelaPrinc extends javax.swing.JFrame {
         areaDeTrabalho = new javax.swing.JDesktopPane();
         lbVersao = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuPrincipal = new javax.swing.JMenu();
-        jMenuItemCadastros = new javax.swing.JMenuItem();
-        jMenuItemConsultas = new javax.swing.JMenuItem();
-        jMenuItemSair = new javax.swing.JMenuItem();
-        jMenuEditar = new javax.swing.JMenu();
         jMenuClientes = new javax.swing.JMenu();
         jMenuItemCadClientes = new javax.swing.JMenuItem();
         jMenuItemConCliente = new javax.swing.JMenuItem();
-        jMenuFornecedor = new javax.swing.JMenu();
-        jMenuItemCadForne = new javax.swing.JMenuItem();
-        jMenuItemConForne = new javax.swing.JMenuItem();
         jMenuProdutos = new javax.swing.JMenu();
         jMenuItemCadProduto = new javax.swing.JMenuItem();
         jMenuItemConProduto = new javax.swing.JMenuItem();
-        jMenuSobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -66,27 +57,6 @@ public class janelaPrinc extends javax.swing.JFrame {
 
         getContentPane().add(areaDeTrabalho);
 
-        jMenuPrincipal.setText("Menu");
-
-        jMenuItemCadastros.setText("cadastros");
-        jMenuItemCadastros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCadastrosActionPerformed(evt);
-            }
-        });
-        jMenuPrincipal.add(jMenuItemCadastros);
-
-        jMenuItemConsultas.setText("consulta");
-        jMenuPrincipal.add(jMenuItemConsultas);
-
-        jMenuItemSair.setText("sair");
-        jMenuPrincipal.add(jMenuItemSair);
-
-        jMenuBar1.add(jMenuPrincipal);
-
-        jMenuEditar.setText("Editar");
-        jMenuBar1.add(jMenuEditar);
-
         jMenuClientes.setText("Clientes");
 
         jMenuItemCadClientes.setText("cadastrar cliente");
@@ -98,19 +68,14 @@ public class janelaPrinc extends javax.swing.JFrame {
         jMenuClientes.add(jMenuItemCadClientes);
 
         jMenuItemConCliente.setText("consultar clientes");
+        jMenuItemConCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConClienteActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jMenuItemConCliente);
 
         jMenuBar1.add(jMenuClientes);
-
-        jMenuFornecedor.setText("Fornecedor");
-
-        jMenuItemCadForne.setText("cadastrar fornecedor");
-        jMenuFornecedor.add(jMenuItemCadForne);
-
-        jMenuItemConForne.setText("consultar fornecedores");
-        jMenuFornecedor.add(jMenuItemConForne);
-
-        jMenuBar1.add(jMenuFornecedor);
 
         jMenuProdutos.setText("Produtos");
 
@@ -132,27 +97,11 @@ public class janelaPrinc extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuProdutos);
 
-        jMenuSobre.setText("sobre");
-        jMenuSobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSobreActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenuSobre);
-
         setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItemCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrosActionPerformed
-        Cadastros form;
-        form = new Cadastros();
-        form.setVisible(true);
-        areaDeTrabalho.add(form);
-       
-    }//GEN-LAST:event_jMenuItemCadastrosActionPerformed
 
     private void jMenuItemCadClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadClientesActionPerformed
         cadastroCliente form;
@@ -179,12 +128,16 @@ public class janelaPrinc extends javax.swing.JFrame {
         areaDeTrabalho.add(form);
     }//GEN-LAST:event_jMenuItemCadProdutoActionPerformed
 
-    private void jMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSobreActionPerformed
-        Sobre_1 sobre = new Sobre_1();
-        sobre.setSize(200, 300);
-        sobre.setVisible(true);
-       
-    }//GEN-LAST:event_jMenuSobreActionPerformed
+    private void jMenuItemConClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConClienteActionPerformed
+       ConsultaClientes form = null;
+        try {
+            form = new ConsultaClientes();
+        } catch (SQLException ex) {
+            Logger.getLogger(janelaPrinc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.setVisible(true);
+        areaDeTrabalho.add(form);
+    }//GEN-LAST:event_jMenuItemConClienteActionPerformed
 
     public static void main(String args[]) {
 
@@ -199,20 +152,11 @@ public class janelaPrinc extends javax.swing.JFrame {
     private javax.swing.JDesktopPane areaDeTrabalho;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
-    private javax.swing.JMenu jMenuEditar;
-    private javax.swing.JMenu jMenuFornecedor;
     private javax.swing.JMenuItem jMenuItemCadClientes;
-    private javax.swing.JMenuItem jMenuItemCadForne;
     private javax.swing.JMenuItem jMenuItemCadProduto;
-    private javax.swing.JMenuItem jMenuItemCadastros;
     private javax.swing.JMenuItem jMenuItemConCliente;
-    private javax.swing.JMenuItem jMenuItemConForne;
     private javax.swing.JMenuItem jMenuItemConProduto;
-    private javax.swing.JMenuItem jMenuItemConsultas;
-    private javax.swing.JMenuItem jMenuItemSair;
-    private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JMenu jMenuProdutos;
-    private javax.swing.JMenu jMenuSobre;
     private javax.swing.JLabel lbVersao;
     // End of variables declaration//GEN-END:variables
 }

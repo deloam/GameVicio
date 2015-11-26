@@ -1,7 +1,14 @@
 package br.com.gameVicio.visual;
 
-public class CadastroProduto extends javax.swing.JInternalFrame {
+import br.com.gameVicio.dao.produtoDao;
+import br.com.gameVicio.modelo.produto;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+
+public class CadastroProduto extends javax.swing.JInternalFrame {
+    produtoDao pd = new produtoDao();
     public CadastroProduto() {
         initComponents();
     }
@@ -113,6 +120,12 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 69;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtCod, gridBagConstraints);
+
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
@@ -122,24 +135,33 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtNome, gridBagConstraints);
 
-        comboClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "arcade", "aventura", "ação", "futebol", "rpg", "guerra", "musica", "tiro", "corrida", "estrategia", "nave", "indie", "multiPlayer" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 114;
+        gridBagConstraints.ipadx = 89;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(comboClass, gridBagConstraints);
 
-        comboSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "psp", "ps1", "ps2", "ps3", "ps4", "xbox", "xbox 360", "xbox one", "super nintendo", "nintendo wii", "game cube", "n64", "nintendo DS", "game boy", "mega drive", "N-gage", "wii U" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.ipadx = 127;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 34;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(comboSetor, gridBagConstraints);
+
+        txtLote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLoteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoteKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 2;
@@ -162,11 +184,7 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtData, gridBagConstraints);
 
-        try {
-            txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ #.###,##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -181,12 +199,27 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
         btSalvar.setText("salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/page_white_horizontal.png"))); // NOI18N
         btLimpar.setText("limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
         btFechar.setText("fechar");
+        btFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFecharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,6 +259,76 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btFecharActionPerformed
+
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+        String campoText = txtNome.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 49){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtNome.setText(campoText);
+        } 
+        
+    }//GEN-LAST:event_txtNomeKeyPressed
+
+    private void txtLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyTyped
+        String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtLoteKeyTyped
+
+    private void txtLoteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyPressed
+        String campoText = txtLote.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 4){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtLote.setText(campoText);
+        } 
+    }//GEN-LAST:event_txtLoteKeyPressed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        String limpo = "";
+        txtData.setText(limpo);
+        txtNome.setText(limpo);
+        txtPreco.setText(limpo);
+        txtLote.setText(limpo);
+    }//GEN-LAST:event_btLimparActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        produto cc = new produto();
+        String nome,classificacao,setor,data,aux;
+        int lote,preco;
+        nome = txtNome.getText();
+        classificacao = comboClass.getSelectedItem().toString();
+        setor = comboSetor.getSelectedItem().toString();
+        data = txtData.getText();
+        lote = Integer.parseInt(txtLote.getText());
+        aux = txtPreco.getText();
+        aux = aux.replace(".", "");
+        aux = aux.replace(",", "");
+        aux = aux.trim();
+        preco = Integer.parseInt(aux);
+        //setando dados produto
+        cc.setClassificacao(classificacao);
+        cc.setData(data);
+        cc.setLote(lote);
+        cc.setNome(nome);
+        cc.setPreco(preco);
+        cc.setSetor(setor);
+        
+        try {
+            pd.cadastrarProduto(cc);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

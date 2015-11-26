@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class consultarProduto extends javax.swing.JInternalFrame {
     Connection con = null;
@@ -18,7 +19,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     public consultarProduto() throws SQLException {
         this.setLocation(500, 200);
         initComponents();
-        cpd.listarProdutos(tabela);
+ 
         bv.setVersao();
         lbVersao.setText(bv.getVersao());
     }
@@ -27,8 +28,12 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jLabel6 = new javax.swing.JLabel();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("game?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        produtoQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
+        produtoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery.getResultList();
         txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
@@ -47,9 +52,9 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         txtLote = new javax.swing.JTextField();
         txtPreco = new javax.swing.JFormattedTextField();
         txtData = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         comboFiltro = new javax.swing.JComboBox();
         lbVersao = new javax.swing.JLabel();
@@ -61,7 +66,6 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         setTitle("Consulta de Produtos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/paste_plain.png"))); // NOI18N
-        setOpaque(true);
         try {
             setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {
@@ -92,16 +96,36 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 0);
         getContentPane().add(txtPesquisa, gridBagConstraints);
 
-        tabela.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Título 5", "Título 6", "Título 7"
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, produtoList, tabela);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${classificacao}"));
+        columnBinding.setColumnName("Classificacao");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${setor}"));
+        columnBinding.setColumnName("Setor");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lote}"));
+        columnBinding.setColumnName("Lote");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${preco}"));
+        columnBinding.setColumnName("Preco");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dataChegada}"));
+        columnBinding.setColumnName("Data Chegada");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
             }
-        ));
+        });
         jScrollPane1.setViewportView(tabela);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -181,6 +205,13 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtCodigo, gridBagConstraints);
+
+        txtNome.setEditable(false);
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -189,24 +220,34 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtNome, gridBagConstraints);
 
-        cbSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "psp", "ps1", "ps2", "ps3", "ps4", "xbox", "xbox 360", "xbox one", "super nintendo", "nintendo wii", "game cube", "n64", "nintendo DS", "game boy", "mega drive", "N-gage", "wii U" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 66;
+        gridBagConstraints.ipadx = 57;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(cbSetor, gridBagConstraints);
 
-        cbClassificacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbClassificacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "arcade", "aventura", "ação", "futebol", "rpg", "guerra", "musica", "tiro", "corrida", "estrategia", "nave", "indie", "multiPlayer" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 64;
+        gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(cbClassificacao, gridBagConstraints);
+
+        txtLote.setEditable(false);
+        txtLote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLoteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoteKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
@@ -215,11 +256,8 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtLote, gridBagConstraints);
 
-        try {
-            txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ #.###,##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtPreco.setEditable(false);
+        txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
@@ -227,6 +265,7 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtPreco, gridBagConstraints);
 
+        txtData.setEditable(false);
         try {
             txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -248,33 +287,48 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
-        jButton1.setText("Salvar");
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
+        btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 155, 6, 0);
-        getContentPane().add(jButton1, gridBagConstraints);
+        getContentPane().add(btSalvar, gridBagConstraints);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/pencil.png"))); // NOI18N
-        jButton2.setText("Editar");
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/pencil.png"))); // NOI18N
+        btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 6, 6, 0);
-        getContentPane().add(jButton2, gridBagConstraints);
+        getContentPane().add(btEditar, gridBagConstraints);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
-        jButton3.setText("Excluir");
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 159, 6, 0);
-        getContentPane().add(jButton3, gridBagConstraints);
+        getContentPane().add(btExcluir, gridBagConstraints);
 
         jLabel9.setText("Pesquisar por:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -305,7 +359,9 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(31, 40, 6, 0);
         getContentPane().add(lbVersao, gridBagConstraints);
 
-        setSize(new java.awt.Dimension(745, 477));
+        bindingGroup.bind();
+
+        setSize(new java.awt.Dimension(762, 477));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -324,14 +380,110 @@ public class consultarProduto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        Object[] options = { "Confirmar", "Cancelar" };  
+        int x = JOptionPane.showOptionDialog(null, "Clique Confirmar para deletar", "Informação",
+             JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        try {
+            if (x==0) {
+            cpd.deletarProduto(txtCodigo);
+            cpd.listarProdutos(tabela);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(consultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        cpd.mostarProduto(tabela, txtCodigo, txtNome, txtLote, txtPreco, txtData, cbClassificacao, cbSetor);
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+       Object[] options = { "Confirmar", "Cancelar" };  
+        int x = JOptionPane.showOptionDialog(null, "Clique Confirmar para Alterar", "Informação",
+             JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (x==0) {
+            
+        
+        boolean f = false;
+      String Preco,Data;
+      Preco = txtPreco.getText();
+      Preco = Preco.replace("R$", "");
+      Preco = Preco.replace(".", "");
+      Preco = Preco.replace(",", "");
+      Preco = Preco.trim();
+      /////////////////////////////////
+      Data = txtData.getText();
+ 
+      
+        try {
+            // // (nome, setor, lote, preco, classificacao, dataChegada)]
+            cpd.editarProduto(txtCodigo, txtNome, txtLote, Preco, Data, cbClassificacao, cbSetor);
+            cpd.listarProdutos(tabela);
+            txtNome.setEditable(f);
+            txtData.setEditable(f);
+            txtLote.setEditable(f);
+            txtPreco.setEditable(f);
+        } catch (SQLException ex) {
+            Logger.getLogger(consultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        boolean controla = false;
+        if (!txtCodigo.getText().isEmpty() && controla == false) {
+            controla = true;
+        txtNome.setEditable(controla);
+        txtData.setEditable(controla);
+        txtLote.setEditable(controla);
+        txtPreco.setEditable(controla);
+        } else if (controla == true){
+            controla = false;
+        txtNome.setEditable(controla);
+        txtData.setEditable(controla);
+        txtLote.setEditable(controla);
+        txtPreco.setEditable(controla);
+        }
+    }//GEN-LAST:event_btEditarActionPerformed
+
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+         String campoText = txtNome.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 49){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtNome.setText(campoText);
+        } 
+    }//GEN-LAST:event_txtNomeKeyPressed
+
+    private void txtLoteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyPressed
+        String campoText = txtLote.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 4){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtLote.setText(campoText);
+        } 
+    }//GEN-LAST:event_txtLoteKeyPressed
+
+    private void txtLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyTyped
+       String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtLoteKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btEditar;
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbClassificacao;
     private javax.swing.JComboBox cbSetor;
     private javax.swing.JComboBox comboFiltro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -344,6 +496,8 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbVersao;
+    private java.util.List<br.com.gameVicio.visual.Produto> produtoList;
+    private javax.persistence.Query produtoQuery;
     private javax.swing.JTable tabela;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JFormattedTextField txtData;
@@ -351,5 +505,6 @@ public class consultarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
     private javax.swing.JFormattedTextField txtPreco;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

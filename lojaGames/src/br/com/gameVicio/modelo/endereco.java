@@ -7,6 +7,7 @@ public class endereco {
     private String estado;
     private int cep;
     private String complemento;
+    private String bairro;
     
     public String getLogradouro() {
         return logradouro;
@@ -54,5 +55,13 @@ public class endereco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 }

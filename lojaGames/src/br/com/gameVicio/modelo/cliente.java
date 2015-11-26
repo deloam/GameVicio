@@ -8,13 +8,13 @@ public class cliente {
     private String dataNasc;
     private String cpf;
     
-    private sexo sexo;
+    private String sexo;
     
     private endereco endereco;
     
     private contato contato;
 
-    public cliente(long id, String nome, String dataNasc, String cpf, sexo sexo, endereco endereco, contato contato) {
+    public cliente(long id, String nome, String dataNasc, String cpf, String sexo, endereco endereco, contato contato) {
         super();
         this.id = id;
         this.nome = nome;
@@ -25,7 +25,7 @@ public class cliente {
         this.contato = contato;
     }
 
-    public cliente(long id, String nome, String dataNasc, String cpf, sexo sexo) {
+    public cliente(long id, String nome, String dataNasc, String cpf, String sexo) {
         this.id = id;
         this.nome = nome;
         this.dataNasc = dataNasc;
@@ -33,7 +33,7 @@ public class cliente {
         this.sexo = sexo;
     }
 
-    public cliente(String nome, String dataNasc, String cpf, sexo sexo, endereco endereco, contato contato) {
+    public cliente(String nome, String dataNasc, String cpf, String sexo, endereco endereco, contato contato) {
         this.nome = nome;
         this.dataNasc = dataNasc;
         this.cpf = cpf;
@@ -42,7 +42,7 @@ public class cliente {
         this.contato = contato;
     }
 
-    public cliente(String nome, String dataNasc, sexo sexo) {
+    public cliente(String nome, String dataNasc, String sexo) {
         this.nome = nome;
         this.dataNasc = dataNasc;
         this.sexo = sexo;
@@ -67,7 +67,7 @@ public class cliente {
         return cpf;
     }
 
-    public sexo getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
@@ -95,7 +95,7 @@ public class cliente {
         this.cpf = cpf;
     }
 
-    public void setSexo(sexo sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

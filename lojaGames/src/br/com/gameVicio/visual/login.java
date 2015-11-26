@@ -144,6 +144,9 @@ public class login extends javax.swing.JFrame {
         
        try {
            sql.Logar(txtLogin,txtSenha);
+           janelaPrinc frm = new janelaPrinc();
+                frm.setVisible(true);
+                dispose();
        } catch (SQLException ex) {
            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -154,6 +157,9 @@ public class login extends javax.swing.JFrame {
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){    
            try {
                sql.Logar (txtLogin,txtSenha);
+               janelaPrinc frm = new janelaPrinc();
+                frm.setVisible(true);
+                dispose();
            } catch (SQLException ex) {
                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
            }

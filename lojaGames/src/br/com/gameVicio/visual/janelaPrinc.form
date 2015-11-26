@@ -4,36 +4,6 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenuPrincipal">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Menu"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadastros">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="cadastros"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCadastrosActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConsultas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="consulta"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSair">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="sair"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuEditar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Editar"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuClientes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Clientes"/>
@@ -51,23 +21,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="consultar clientes"/>
               </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuFornecedor">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Fornecedor"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadForne">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="cadastrar fornecedor"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConForne">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="consultar fornecedores"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemConClienteActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -93,14 +49,6 @@
               </Events>
             </MenuItem>
           </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuSobre">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="sobre"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuSobreActionPerformed"/>
-          </Events>
         </Menu>
       </SubComponents>
     </Menu>

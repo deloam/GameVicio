@@ -186,6 +186,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNomeKeyPressed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="6" gridY="0" gridWidth="9" gridHeight="1" fill="0" ipadX="332" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="17" weightX="0.0" weightY="0.0"/>
@@ -195,38 +198,64 @@
         <Component class="javax.swing.JComboBox" name="comboClass">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="13">
+                <StringItem index="0" value="arcade"/>
+                <StringItem index="1" value="aventura"/>
+                <StringItem index="2" value="a&#xe7;&#xe3;o"/>
+                <StringItem index="3" value="futebol"/>
+                <StringItem index="4" value="rpg"/>
+                <StringItem index="5" value="guerra"/>
+                <StringItem index="6" value="musica"/>
+                <StringItem index="7" value="tiro"/>
+                <StringItem index="8" value="corrida"/>
+                <StringItem index="9" value="estrategia"/>
+                <StringItem index="10" value="nave"/>
+                <StringItem index="11" value="indie"/>
+                <StringItem index="12" value="multiPlayer"/>
               </StringArray>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="3" gridY="1" gridWidth="5" gridHeight="1" fill="0" ipadX="114" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="3" gridY="1" gridWidth="5" gridHeight="1" fill="0" ipadX="89" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboSetor">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="17">
+                <StringItem index="0" value="psp"/>
+                <StringItem index="1" value="ps1"/>
+                <StringItem index="2" value="ps2"/>
+                <StringItem index="3" value="ps3"/>
+                <StringItem index="4" value="ps4"/>
+                <StringItem index="5" value="xbox"/>
+                <StringItem index="6" value="xbox 360"/>
+                <StringItem index="7" value="xbox one"/>
+                <StringItem index="8" value="super nintendo"/>
+                <StringItem index="9" value="nintendo wii"/>
+                <StringItem index="10" value="game cube"/>
+                <StringItem index="11" value="n64"/>
+                <StringItem index="12" value="nintendo DS"/>
+                <StringItem index="13" value="game boy"/>
+                <StringItem index="14" value="mega drive"/>
+                <StringItem index="15" value="N-gage"/>
+                <StringItem index="16" value="wii U"/>
               </StringArray>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="10" gridY="1" gridWidth="6" gridHeight="1" fill="0" ipadX="127" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="17" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="10" gridY="1" gridWidth="4" gridHeight="1" fill="0" ipadX="34" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="17" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLote">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtLoteKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtLoteKeyTyped"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="7" gridY="2" gridWidth="3" gridHeight="1" fill="0" ipadX="98" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="17" weightX="0.0" weightY="0.0"/>
@@ -247,8 +276,8 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtPreco">
           <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="R$ #.###,##" subtype="-1" type="5"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="0" type="0"/>
             </Property>
           </Properties>
           <Constraints>
@@ -274,6 +303,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="salvar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btLimpar">
       <Properties>
@@ -282,6 +314,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="limpar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimparActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btFechar">
       <Properties>
@@ -290,6 +325,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="fechar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btFecharActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

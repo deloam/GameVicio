@@ -1,21 +1,38 @@
 package br.com.gameVicio.visual;
 
+import br.com.gameVicio.dao.ClienteDao;
+import br.com.gameVicio.dao.produtoDao;
 import br.com.gameVicio.modelo.WebServiceCep;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ConsultaClientes extends javax.swing.JInternalFrame {
-
-    public ConsultaClientes() {
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    ClienteDao cd = new ClienteDao();
+    BuildVersion bv = new BuildVersion();
+    public ConsultaClientes() throws SQLException {
         initComponents();
+      
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jTextField1 = new javax.swing.JTextField();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("game?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        clientesQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Clientes c");
+        clientesList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : clientesQuery.getResultList();
+        pesquisar = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         painelDadosPessoais = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
@@ -25,7 +42,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         txtNasc = new javax.swing.JTextField();
         lbCPF = new javax.swing.JLabel();
         txtcpf = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbsexo = new javax.swing.JComboBox();
         painelDadosResidenciais = new javax.swing.JPanel();
         lbEndereco = new javax.swing.JLabel();
         lbCep = new javax.swing.JLabel();
@@ -52,15 +69,21 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         txtTelefone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbFiltro = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
+
+        pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pesquisarKeyReleased(evt);
+            }
+        });
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 0));
         jTabbedPane1.setToolTipText("");
@@ -122,7 +145,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 7, 5, 0);
         painelDadosPessoais.add(txtcpf, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
+        cbsexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -130,7 +153,7 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        painelDadosPessoais.add(jComboBox1, gridBagConstraints);
+        painelDadosPessoais.add(cbsexo, gridBagConstraints);
 
         jTabbedPane1.addTab("Dados Pessoais", painelDadosPessoais);
 
@@ -357,22 +380,35 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Contato", painelContatos);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Título 5", "Título 6", "Título 7"
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, clientesList, tabela);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cpf}"));
+        columnBinding.setColumnName("Cpf");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sexo}"));
+        columnBinding.setColumnName("Sexo");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dataNasc}"));
+        columnBinding.setColumnName("Data Nasc");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+        jScrollPane1.setViewportView(tabela);
 
         jLabel1.setText("Pesquisar por:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Nascimento", "CPF", "Sexo" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Nascimento", "CPF", "Sexo" }));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/accept.png"))); // NOI18N
         jButton1.setText("Salvar");
@@ -392,11 +428,11 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, 0, 117, Short.MAX_VALUE)))
+                        .addComponent(cbFiltro, 0, 117, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -417,9 +453,9 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -431,6 +467,8 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
                     .addComponent(jButton3))
                 .addGap(10, 10, 10))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -466,6 +504,18 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneActionPerformed
 
+    private void pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarKeyReleased
+        try {
+            cd.pesquisarFiltro(pesquisar, tabela, cbFiltro);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_pesquisarKeyReleased
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        cd.mostarClientes(tabela, txtcpf, txtNome, cbsexo, txtNasc);
+    }//GEN-LAST:event_tabelaMouseClicked
+
     public void buscaCep() {
         //Faz a busca para o cep 58043-280
         WebServiceCep webServiceCep = WebServiceCep.searchCep(txtCep.getText());
@@ -493,17 +543,18 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscarCep;
+    private javax.swing.JComboBox cbFiltro;
     private javax.swing.JComboBox cbUF;
+    private javax.swing.JComboBox cbsexo;
+    private java.util.List<br.com.gameVicio.visual.Clientes> clientesList;
+    private javax.persistence.Query clientesQuery;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbCelular;
@@ -521,6 +572,8 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel painelContatos;
     private javax.swing.JPanel painelDadosPessoais;
     private javax.swing.JPanel painelDadosResidenciais;
+    private javax.swing.JTextField pesquisar;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtCep;
@@ -535,5 +588,6 @@ public class ConsultaClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNumEnd;
     private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtcpf;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

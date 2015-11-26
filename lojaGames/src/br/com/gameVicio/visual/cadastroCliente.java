@@ -2,9 +2,9 @@ package br.com.gameVicio.visual;
 
 import br.com.gameVicio.modelo.WebServiceCep;
 import br.com.gameVicio.dao.ClienteDao;
-import br.com.gameVicio.dao.ContatoDao;
-import br.com.gameVicio.dao.EnderecoDao;
 import br.com.gameVicio.modelo.cliente;
+import br.com.gameVicio.modelo.contato;
+import br.com.gameVicio.modelo.endereco;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -13,9 +13,7 @@ import javax.swing.JOptionPane;
 
 public class cadastroCliente extends javax.swing.JInternalFrame {
     ClienteDao cd = new ClienteDao();
-    cliente cc = new cliente();
-    EnderecoDao end = new EnderecoDao();
-    ContatoDao cont = new ContatoDao();
+    
     
     public cadastroCliente() {
         initComponents();
@@ -141,6 +139,15 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelDadosResidenciais.add(lbBairro, gridBagConstraints);
+
+        txtEndereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEnderecoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEnderecoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -149,6 +156,12 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 280;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelDadosResidenciais.add(txtEndereco, gridBagConstraints);
+
+        txtCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCidadeKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -157,6 +170,12 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 139;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelDadosResidenciais.add(txtCidade, gridBagConstraints);
+
+        txtBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBairroKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -169,6 +188,14 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         txtNumEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumEndActionPerformed(evt);
+            }
+        });
+        txtNumEnd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNumEndKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumEndKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -189,6 +216,9 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCepKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCepKeyTyped(evt);
+            }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -198,6 +228,15 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 0.8;
         gridBagConstraints.insets = new java.awt.Insets(5, 4, 5, 59);
         painelDadosResidenciais.add(txtCep, gridBagConstraints);
+
+        txtComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtComplementoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComplementoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -278,6 +317,15 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 10);
         painelDadosPessoais.add(lbSexo, gridBagConstraints);
+
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomeKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -301,6 +349,15 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         painelDadosPessoais.add(lbCPF, gridBagConstraints);
+
+        txtcpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcpfKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcpfKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 120;
@@ -363,6 +420,14 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         painelContatos.add(lbEmail, gridBagConstraints);
 
         txtDDDCelular.setColumns(2);
+        txtDDDCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDDDCelularKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDDDCelularKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelContatos.add(txtDDDCelular, gridBagConstraints);
@@ -373,11 +438,28 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
                 txtDDDTelefoneActionPerformed(evt);
             }
         });
+        txtDDDTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDDDTelefoneKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDDDTelefoneKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelContatos.add(txtDDDTelefone, gridBagConstraints);
+
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCelularKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -390,12 +472,26 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
                 txtTelefoneActionPerformed(evt);
             }
         });
+        txtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelefoneKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefoneKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 89;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         painelContatos.add(txtTelefone, gridBagConstraints);
+
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -440,6 +536,11 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
 
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONES/cancel.png"))); // NOI18N
         btFechar.setText("fechar");
+        btFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFecharActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -493,9 +594,16 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbUFActionPerformed
 
     private void txtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCepKeyPressed
-         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        String campoText = txtCep.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 7){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtCep.setText(campoText);
+        } 
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
              buscaCep();
              txtNumEnd.setFocusable(true);
+             
          }    
     }//GEN-LAST:event_txtCepKeyPressed
 
@@ -504,14 +612,290 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarCepActionPerformed
 
     private void btSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCadastroActionPerformed
-       end.cadastrarEndereco(txtEndereco, txtCep, txtCidade, cbUF, txtCep, txtComplemento);
-       cont.cadastrarContato(txtTelefone, txtEmail, txtCelular, txtDDDCelular, txtDDDTelefone);
+       cliente client = new cliente();
+       endereco end = new endereco();
+       contato cont = new contato();
+       
+       // variaveis do objeto endereco end
+       String logra  = txtEndereco.getText();
+       int numero    = Integer.parseInt(txtNumEnd.getText());
+       String comple = txtComplemento.getText();
+       int cep       = Integer.parseInt(txtCep.getText());
+       String estado = cbUF.getSelectedItem().toString();
+       String cidade = txtCidade.getText();
+       String bairro = txtBairro.getText();
+       // setando variaveis no objeto end
+       end.setCep(cep);
+       end.setCidade(cidade);
+       end.setComplemento(comple);
+       end.setEstado(estado);
+       end.setNumero(numero);
+       end.setLogradouro(logra);
+       end.setBairro(bairro);
+    
+       
+       ////////////////////////////////////////////
+       //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+       
+       // variaveis do objeto contato cont
+       String telefone = txtDDDTelefone.getText()+txtTelefone.getText();
+       String celular = txtDDDCelular.getText()+txtCelular.getText();
+       String email = txtEmail.getText();
+       // sentando variaveis no objeto contato cont
+       cont.setCelular(celular);
+       cont.setTelefone(telefone);
+       cont.setEmail(email);
+       
+       ///////////////////////////////////////////
+       //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+       
+       // variaveis do objeto cliente
+       String nome = txtNome.getText();
+       String cpf = txtcpf.getText();
+       String nasc = txtNasc.getText();
+       String sx = null;
+       //setando variaveis no objeto cliente client
+       if (cbSexo.getSelectedItem().toString().equalsIgnoreCase("Masculino")){
+                sx = "m";
+        }else if (cbSexo.getSelectedItem().toString().equalsIgnoreCase("Feminino")){
+            sx = "f";
+        }
+       client.setSexo(sx);
+       client.setNome(nome);
+       client.setCpf(cpf);
+       client.setDataNasc(nasc);
+        /////////////////////////////
         try {
-            cd.inserirCliente(txtNome, txtNasc, txtcpf, cbSexo, 1, 1);
+            cd.inserirCliente(client,end,cont);
         } catch (SQLException ex) {
             Logger.getLogger(cadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btSalvarCadastroActionPerformed
+
+    private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
+          this.dispose();
+    }//GEN-LAST:event_btFecharActionPerformed
+
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
+       String caracteres;
+       caracteres = "0987654321!@#$%¨&*()+=§_¬¢£³²¹/?°;.~,´`[]{}ªº";
+
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+
+}
+    }//GEN-LAST:event_txtNomeKeyTyped
+
+    private void txtcpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcpfKeyTyped
+       String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtcpfKeyTyped
+
+    private void txtCepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCepKeyTyped
+        String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtCepKeyTyped
+
+    private void txtNumEndKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumEndKeyTyped
+         String caracteres;
+       caracteres = "0987654321abcdefghijklmnopqrstuvxwyz";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtNumEndKeyTyped
+
+    private void txtDDDCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDDDCelularKeyTyped
+        String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtDDDCelularKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void txtDDDTelefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDDDTelefoneKeyTyped
+         String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtDDDTelefoneKeyTyped
+
+    private void txtTelefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefoneKeyTyped
+         String caracteres;
+       caracteres = "0987654321";
+
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+        // se o caractere digitado for um contido na String caracteres
+        evt.consume(); // o caractere é removido através do método consume
+        }
+    }//GEN-LAST:event_txtTelefoneKeyTyped
+
+    private void txtDDDCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDDDCelularKeyPressed
+        String campoText = txtDDDCelular.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 1){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtDDDCelular.setText(campoText);
+
+}
+    }//GEN-LAST:event_txtDDDCelularKeyPressed
+
+    private void txtDDDTelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDDDTelefoneKeyPressed
+        String campoText = txtDDDTelefone.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 1){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtDDDTelefone.setText(campoText);
+        }
+    }//GEN-LAST:event_txtDDDTelefoneKeyPressed
+
+    private void txtCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyPressed
+        String campoText = txtCelular.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 8){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtCelular.setText(campoText);
+        }
+    }//GEN-LAST:event_txtCelularKeyPressed
+
+    private void txtTelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefoneKeyPressed
+        String campoText = txtTelefone.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 8){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtTelefone.setText(campoText);
+        }
+    }//GEN-LAST:event_txtTelefoneKeyPressed
+
+    private void txtEnderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnderecoKeyTyped
+       String campoText = txtEndereco.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 99){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtEndereco.setText(campoText);
+        }
+    }//GEN-LAST:event_txtEnderecoKeyTyped
+
+    private void txtComplementoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComplementoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComplementoKeyTyped
+
+    private void txtEnderecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnderecoKeyPressed
+        String campoText = txtEndereco.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 99){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtEndereco.setText(campoText);
+        }
+    }//GEN-LAST:event_txtEnderecoKeyPressed
+
+    private void txtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComplementoKeyPressed
+       String campoText = txtComplemento.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 49){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtComplemento.setText(campoText);
+        }
+    }//GEN-LAST:event_txtComplementoKeyPressed
+
+    private void txtNumEndKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumEndKeyPressed
+       String campoText = txtNumEnd.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 3){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtNumEnd.setText(campoText);
+        }
+    }//GEN-LAST:event_txtNumEndKeyPressed
+
+    private void txtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCidadeKeyPressed
+        String campoText = txtCidade.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 49){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtCidade.setText(campoText);
+        }
+    }//GEN-LAST:event_txtCidadeKeyPressed
+
+    private void txtBairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBairroKeyPressed
+        String campoText = txtBairro.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 99){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtBairro.setText(campoText);
+        }
+    }//GEN-LAST:event_txtBairroKeyPressed
+
+    private void txtcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcpfKeyPressed
+        String campoText = txtcpf.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 10){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtcpf.setText(campoText);
+        }
+    }//GEN-LAST:event_txtcpfKeyPressed
+
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+        String campoText = txtNome.getText();
+        int quantCaracteres = campoText.length();
+        if (quantCaracteres > 99){
+        campoText = campoText.substring (0, campoText.length() - 1);
+        txtNome.setText(campoText);
+        }
+    }//GEN-LAST:event_txtNomeKeyPressed
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+       if ((txtEmail.getText().contains("@")) &&
+           (txtEmail.getText().contains(".")) &&
+           (!txtEmail.getText().contains(" "))) {
+            String usuario = new String(txtEmail.getText().substring(0, txtEmail.getText().lastIndexOf('@'))); 
+            String dominio = new String(txtEmail.getText().substring(txtEmail.getText().lastIndexOf ('@') + 1, txtEmail.getText().length()));
+
+            if ((usuario.length() >=1) && (!usuario.contains("@")) &&
+             (dominio.contains(".")) && (!dominio.contains("@")) &&
+             (dominio.indexOf(".") >= 1) && (dominio.lastIndexOf(".") < dominio.length() - 1)) {
+
+             lbEmail.setText("");
+
+             } else {
+
+             lbEmail.setText("E-mail Inválido");
+             txtBairro.requestFocus();
+             }
+             } else { 
+            lbEmail.setText("E-mail Inválido"); 
+            txtEmail.requestFocus(); 
+            } 
+
+
+
+    }//GEN-LAST:event_txtEmailFocusLost
       
     public void buscaCep() {
         //Faz a busca para o cep 58043-280
