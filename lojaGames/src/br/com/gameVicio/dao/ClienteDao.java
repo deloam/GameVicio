@@ -19,8 +19,16 @@ public class ClienteDao {
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
+
+    public ClienteDao() {
+        try {
+            this.con = conectabd.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
-       public void listarClientes(JTable tabela) throws SQLException{
+    public void listarClientes(JTable tabela) throws SQLException{
          con = conectabd.getConnection();
         String sql = "select * from clientes order by id Asc";
         try {
@@ -31,9 +39,8 @@ public class ClienteDao {
             JOptionPane.showMessageDialog(null,error);
         }
     }
-    
-    
-      public void pesquisarFiltro(JTextField pesquisa,JTable tabela,JComboBox sel) throws SQLException{
+        
+    public void pesquisarFiltro(JTextField pesquisa,JTable tabela,JComboBox sel) throws SQLException{
         String seletc;
         switch (sel.getSelectedIndex()) {
             case 0:
@@ -63,13 +70,13 @@ public class ClienteDao {
         }
     }
 
-       public void inserirCliente(cliente cc,endereco end,contato conc) throws SQLException{
-        con = conectabd.getConnection();
+    public void inserirCliente(cliente cc,endereco end,contato conc) throws SQLException{
+        
+            
         int i = 0;
-        String sx = null;
-        String sql = "INSERT INTO `game`.`clientes` (`nome`, `dataNasc`, `cpf`, `sexo`, "
-             + "`logradouro`, `numero_casa`, `cidade`, `estado`, `cep`, `complemento`, "
-             + "`email`, `telefone`, `dddtel`, `celular`, `dddcel`) "
+        String sql = "INSERT INTO game.clientes (nome, dataNasc, cpf, sexo, "
+             + "logradouro, numero_casa, cidade, estado, cep, complemento, "
+             + "email, telefone, dddtel, celular, dddcel) "
              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
          try {
@@ -77,7 +84,7 @@ public class ClienteDao {
              pst.setString(++i, cc.getNome());
              pst.setString(++i, cc.getDataNasc());
              pst.setString(++i, cc.getCpf() );
-             pst.setString(++i, cc.getSexo().toString() );
+             pst.setString(++i, cc.getSexo() );
              pst.setString(++i, end.getLogradouro());
              pst.setInt   (++i, end.getNumero() );
              pst.setString(++i, end.getCidade());
@@ -86,15 +93,35 @@ public class ClienteDao {
              pst.setString(++i, end.getComplemento());
              pst.setString(++i, conc.getEmail());
              pst.setString(++i, conc.getTelefone());
-             pst.setString(i++,conc.getTelefone().substring(0, 1));
+             pst.setString(++i,conc.getTelefone().substring(0, 1));
              pst.setString(++i, conc.getCelular());
-             pst.setString(i++,conc.getCelular().substring(0, 1));
-             pst.executeUpdate();
-             con.close();
-             pst.close();
-             
+             pst.setString(++i,conc.getCelular().substring(0, 1));
+             pst.execute(); 
+             JOptionPane.showMessageDialog(null, "Cadastrado com sucecsso!");
          } catch (SQLException ex) {
              Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
          }
 }
+
+    public void mostarClientes(JTable tabela, JTextField cpf,JTextField nome,
+         JComboBox sexo, JTextField data){
+         int seleciona = tabela.getSelectedRow();
+         String sx;
+        cpf.setText(tabela.getModel().getValueAt(seleciona, 1).toString());
+        nome.setText(tabela.getModel().getValueAt(seleciona,2).toString());
+        
+        if (tabela.getModel().getValueAt(seleciona,3).toString().equalsIgnoreCase("f")){
+           sx = "Feminino";
+        } else {
+            sx = "Masculino";
+        }
+        sexo.setSelectedItem(sx);
+        
+        data.setText(tabela.getModel().getValueAt(seleciona,4).toString());
+     
+    }
+
+    public void mostrarcontato () {
+        
+    }
 }
