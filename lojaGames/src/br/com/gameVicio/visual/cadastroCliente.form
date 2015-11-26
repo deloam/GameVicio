@@ -207,8 +207,8 @@
         <Component class="javax.swing.JComboBox" name="cbUF">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="28">
-                <StringItem index="0" value="selecione..."/>
+              <StringArray count="27">
+                <StringItem index="0" value="PA"/>
                 <StringItem index="1" value="AC"/>
                 <StringItem index="2" value="AL"/>
                 <StringItem index="3" value="AP"/>
@@ -224,18 +224,17 @@
                 <StringItem index="13" value="MG"/>
                 <StringItem index="14" value="PR"/>
                 <StringItem index="15" value="PB"/>
-                <StringItem index="16" value="PA"/>
-                <StringItem index="17" value="PE"/>
-                <StringItem index="18" value="PI"/>
-                <StringItem index="19" value="RJ"/>
-                <StringItem index="20" value="RN"/>
-                <StringItem index="21" value="RS"/>
-                <StringItem index="22" value="RO"/>
-                <StringItem index="23" value="RR"/>
-                <StringItem index="24" value="SC"/>
-                <StringItem index="25" value="SE"/>
-                <StringItem index="26" value="SP"/>
-                <StringItem index="27" value="TO"/>
+                <StringItem index="16" value="PE"/>
+                <StringItem index="17" value="PI"/>
+                <StringItem index="18" value="RJ"/>
+                <StringItem index="19" value="RN"/>
+                <StringItem index="20" value="RS"/>
+                <StringItem index="21" value="RO"/>
+                <StringItem index="22" value="RR"/>
+                <StringItem index="23" value="SC"/>
+                <StringItem index="24" value="SE"/>
+                <StringItem index="25" value="SP"/>
+                <StringItem index="26" value="TO"/>
               </StringArray>
             </Property>
           </Properties>
@@ -322,13 +321,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNasc">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="1" gridY="1" gridWidth="2" gridHeight="1" fill="0" ipadX="123" ipadY="0" insetsTop="5" insetsLeft="7" insetsBottom="5" insetsRight="10" anchor="18" weightX="0.0" weightY="0.0"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JLabel" name="lbCPF">
           <Properties>
             <Property name="text" type="java.lang.String" value="CPF:"/>
@@ -366,16 +358,27 @@
         <Component class="javax.swing.JComboBox" name="cbSexo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="selecione..."/>
-                <StringItem index="1" value="Masculino"/>
-                <StringItem index="2" value="Feminino"/>
+              <StringArray count="2">
+                <StringItem index="0" value="Masculino"/>
+                <StringItem index="1" value="Feminino"/>
               </StringArray>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="-1" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="5" insetsBottom="0" insetsRight="0" anchor="21" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txtNasc">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="-1" gridY="1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="8" insetsLeft="8" insetsBottom="8" insetsRight="8" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>

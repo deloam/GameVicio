@@ -47,11 +47,11 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         lbDataNasc = new javax.swing.JLabel();
         lbSexo = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtNasc = new javax.swing.JTextField();
         lbCPF = new javax.swing.JLabel();
         txtcpf = new javax.swing.JTextField();
         btLimparDadosPessoais = new javax.swing.JButton();
         cbSexo = new javax.swing.JComboBox();
+        txtNasc = new javax.swing.JFormattedTextField();
         painelContatos = new javax.swing.JPanel();
         lbCelular = new javax.swing.JLabel();
         lbTelefone = new javax.swing.JLabel();
@@ -257,7 +257,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 4;
         painelDadosResidenciais.add(btLimparDadosRecidenciais, gridBagConstraints);
 
-        cbUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecione...", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PR", "PB", "PA", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SE", "SP", "TO" }));
+        cbUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PA", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PR", "PB", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SE", "SP", "TO" }));
         cbUF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbUFActionPerformed(evt);
@@ -334,14 +334,6 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 7, 5, 10);
         painelDadosPessoais.add(txtNome, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 123;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 7, 5, 10);
-        painelDadosPessoais.add(txtNasc, gridBagConstraints);
 
         lbCPF.setText("CPF:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -377,12 +369,23 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         painelDadosPessoais.add(btLimparDadosPessoais, gridBagConstraints);
 
-        cbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecione...", "Masculino", "Feminino" }));
+        cbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         painelDadosPessoais.add(cbSexo, gridBagConstraints);
+
+        try {
+            txtNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
+        painelDadosPessoais.add(txtNasc, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -618,7 +621,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
        
        // variaveis do objeto endereco end
        String logra  = txtEndereco.getText();
-       int numero    = Integer.parseInt(txtNumEnd.getText());
+       String numero = txtNumEnd.getText();
        String comple = txtComplemento.getText();
        int cep       = Integer.parseInt(txtCep.getText());
        String estado = cbUF.getSelectedItem().toString();
@@ -960,7 +963,7 @@ public class cadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDDDTelefone;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtNasc;
+    private javax.swing.JFormattedTextField txtNasc;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumEnd;
     private javax.swing.JTextField txtTelefone;

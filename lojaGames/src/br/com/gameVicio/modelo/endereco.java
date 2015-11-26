@@ -2,7 +2,7 @@ package br.com.gameVicio.modelo;
 
 public class endereco {
     private String logradouro;
-    private int numero;
+    private String numero;
     private String cidade;
     private String estado;
     private int cep;
@@ -13,7 +13,7 @@ public class endereco {
         return logradouro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -37,7 +37,7 @@ public class endereco {
         this.logradouro = logradouro;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
