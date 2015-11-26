@@ -27,7 +27,7 @@ public class ClienteDao {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //test
     public void listarClientes(JTable tabela) throws SQLException{
          con = conectabd.getConnection();
         String sql = "select * from clientes order by id Asc";
